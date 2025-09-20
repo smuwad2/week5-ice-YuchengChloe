@@ -4,83 +4,83 @@ const cors = require('cors');
 const path = require('path');
 
 const supermarketItems = [
-    // Fruit category
-    {
-      name: "Apple",
-      category: "Fruit",
-      quantity: 10,
-      price: 0.5
-    },
-    {
-      name: "Banana",
-      category: "Fruit",
-      quantity: 15,
-      price: 0.3
-    },
-    {
-      name: "Orange",
-      category: "Fruit",
-      quantity: 12,
-      price: 0.6
-    },
-    // Dairy category
-    {
-      name: "Milk",
-      category: "Dairy",
-      quantity: 5,
-      price: 1.2
-    },
-    {
-      name: "Cheddar Cheese",
-      category: "Dairy",
-      quantity: 4,
-      price: 3.8
-    },
-    {
-      name: "Yogurt",
-      category: "Dairy",
-      quantity: 8,
-      price: 0.9
-    },
-    // Confectionary category
-    {
-      name: "Bread",
-      category: "Confectionary",
-      quantity: 3,
-      price: 2.5
-    },
-    {
-      name: "Croissant",
-      category: "Confectionary",
-      quantity: 7,
-      price: 1.5
-    },
-    {
-      name: "Bagel",
-      category: "Confectionary",
-      quantity: 6,
-      price: 1.0
-    },
-    // Vegetable category
-    {
-      name: "Broccoli",
-      category: "Vegetable",
-      quantity: 7,
-      price: 1.3
-    },
-    {
-      name: "Carrot",
-      category: "Vegetable",
-      quantity: 9,
-      price: 0.8
-    },
-    {
-      name: "Spinach",
-      category: "Vegetable",
-      quantity: 5,
-      price: 1.5
-    }
-  ];
+  // Fruit category
+  {
+    name: "Apple",
+    category: "Fruit",
+    quantity: 10,
+    price: 0.5
+  },
+  {
+    name: "Banana",
+    category: "Fruit",
+    quantity: 15,
+    price: 0.3
+  },
+  {
+    name: "Orange",
+    category: "Fruit",
+    quantity: 12,
+    price: 0.6
+  },
+  // Dairy category
+  {
+    name: "Milk",
+    category: "Dairy",
+    quantity: 5,
+    price: 1.2
+  },
+  {
+    name: "Cheddar Cheese",
+    category: "Dairy",
+    quantity: 4,
+    price: 3.8
+  },
+  {
+    name: "Yogurt",
+    category: "Dairy",
+    quantity: 8,
+    price: 0.9
+  },
+  // Confectionary category
+  {
+    name: "Bread",
+    category: "Confectionary",
+    quantity: 3,
+    price: 2.5
+  },
+  {
+    name: "Croissant",
+    category: "Confectionary",
+    quantity: 7,
+    price: 1.5
+  },
+  {
+    name: "Bagel",
+    category: "Confectionary",
+    quantity: 6,
+    price: 1.0
+  },
+  // Vegetable category
+  {
+    name: "Broccoli",
+    category: "Vegetable",
+    quantity: 7,
+    price: 1.3
+  },
+  {
+    name: "Carrot",
+    category: "Vegetable",
+    quantity: 9,
+    price: 0.8
+  },
+  {
+    name: "Spinach",
+    category: "Vegetable",
+    quantity: 5,
+    price: 1.5
+  }
+];
 
 // Names array
 const names = [
@@ -164,28 +164,28 @@ app.get('/data', (req, res) => {
 });
 
 app.get('/categories', (req, res) => {
-    const categories = [...new Set(supermarketItems.map(item => item.category))];
-    if (categories && categories.length > 0) {
-        return res.json(categories);
-    } else {
-        return res.status(404).send('Categories not found');
-    }
+  const categories = [...new Set(supermarketItems.map(item => item.category))];
+  if (categories && categories.length > 0) {
+    return res.json(categories);
+  } else {
+    return res.status(404).send('Categories not found');
+  }
 });
 
 app.get('/items', (req, res) => {
-    let selCategory = 0;
-    if (req.query.category) {
-        selCategory = req.query.category;    
-        const items = supermarketItems.filter(g => g.category.toLowerCase() == selCategory.toLowerCase());
-        if (items && items.length>0) {
-            return res.json(items);
-        } else {
-            return res.status(404).send('Items not found');
-        }
+  let selCategory = 0;
+  if (req.query.category) {
+    selCategory = req.query.category;
+    const items = supermarketItems.filter(g => g.category.toLowerCase() == selCategory.toLowerCase());
+    if (items && items.length > 0) {
+      return res.json(items);
+    } else {
+      return res.status(404).send('Items not found');
     }
-    res.json(supermarketItems);
+  }
+  res.json(supermarketItems);
 });
 const port = process.env.port || 3000;
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });

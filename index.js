@@ -164,6 +164,7 @@ app.get('/data', (req, res) => {
 });
 
 app.get('/categories', (req, res) => {
+  console.log(1)
     const categories = [...new Set(supermarketItems.map(item => item.category))];
     if (categories && categories.length > 0) {
         return res.json(categories);
